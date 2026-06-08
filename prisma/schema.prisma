@@ -7,13 +7,65 @@ datasource db {
 }
 
 model User {
-  id        String     @id @default(cuid())
-  email     String     @unique
-  name      String
-  password  String
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  orders    Order[]
+  id           String        @id @default(cuid())
+  email        String        @unique
+  name         String
+  password     String
+  role         String        @default("user") // user, designer
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime       @updatedAt
+  orders       Order[]
+  designer     Designer?
+}
+
+model Designer {
+  id              String     @id @default(cuid())
+  userId          String     @unique
+  user            User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bio             String?
+  skills          String?    // JSON: ["UI/UX", "Web Design"]
+  portfolioUrl    String?
+  rating          Float      @default(0)
+  completedOrders Int        @default(0)
+  totalEarnings   Float      @default(0)
+  status          String     @default("active") // active, inactive, suspended
+  designerOrders  DesignerOrder[]
+  earnings        Earning[]
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+}
+
+model DesignerOrder {
+  id           String     @id @default(cuid())
+  orderId      String     @unique
+  order        Order      @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  designerId   String
+  designer     Designer   @relation(fields: [designerId], references: [id], onDelete: Cascade)
+  status       String     @default("pending") // pending, accepted, rejected, in_progress, submitted, completed
+  designNotes  String?
+  deliveryFile String?    // JSON URL or path
+  submittedAt  DateTime?
+  acceptedAt   DateTime?
+  completedAt  DateTime?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@index([designerId])
+  @@index([orderId])
+}
+
+model Earning {
+  id         String     @id @default(cuid())
+  designerId String
+  designer   Designer   @relation(fields: [designerId], references: [id], onDelete: Cascade)
+  amount     Float
+  orderCount Int        @default(1)
+  status     String     @default("pending") // pending, paid, withdrawn
+  source     String     // order_id
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  @@index([designerId])
 }
 
 model Category {
@@ -65,10 +117,10 @@ model Style {
 }
 
 model Order {
-  id                String     @id @default(cuid())
-  orderNumber       String     @unique
+  id                String           @id @default(cuid())
+  orderNumber       String           @unique
   userId            String?
-  user              User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
+  user              User?            @relation(fields: [userId], references: [id], onDelete: SetNull)
   customerName      String
   customerEmail     String
   productName       String
@@ -79,11 +131,12 @@ model Order {
   fileFormat        String
   uploadedFileCount Int
   totalPrice        Float
-  status            String     @default("pending") // pending, paid, completed, cancelled
+  status            String           @default("pending") // pending, paid, in_progress, completed, cancelled
   notes             String?
-  createdAt         DateTime   @default(now())
-  updatedAt         DateTime   @updatedAt
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
   payment           Payment?
+  designerOrder     DesignerOrder?
 
   @@index([userId])
 }
