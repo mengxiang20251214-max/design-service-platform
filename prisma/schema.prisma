@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        String     @id @default(cuid())
+  email     String     @unique
+  name      String
+  password  String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Category {
+  id          String     @id @default(cuid())
+  name        String     @unique
+  slug        String     @unique
+  description String?
+  icon        String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  products    Product[]
+  styles      Style[]
+}
+
+model Product {
+  id          String     @id @default(cuid())
+  name        String
+  slug        String     @unique
+  description String?
+  price       Float
+  image       String?
+  category    Category   @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId  String
+  featured    Boolean    @default(false)
+  rating      Float      @default(0)
+  reviews     Int        @default(0)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@index([categoryId])
+}
+
+model Style {
+  id          String     @id @default(cuid())
+  name        String
+  slug        String     @unique
+  description String?
+  coverImage  String?
+  price       Float
+  category    Category   @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId  String
+  featured    Boolean    @default(false)
+  rating      Float      @default(0)
+  reviews     Int        @default(0)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@index([categoryId])
+}
