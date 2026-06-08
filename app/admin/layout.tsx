@@ -34,23 +34,13 @@ export default function AdminLayout({
     }
 
     if (!loading && user) {
-      checkAdminStatus();
-    }
-  }, [loading, isAuthenticated, user, router]);
-
-  const checkAdminStatus = async () => {
-    try {
-      const response = await fetch('/api/admin/stats');
-      if (response.ok) {
+      if (user.role === 'admin') {
         setIsAdmin(true);
       } else {
         router.push('/');
       }
-    } catch (error) {
-      console.error('Failed to check admin status:', error);
-      router.push('/');
     }
-  };
+  }, [loading, isAuthenticated, user, router]);
 
   if (loading) {
     return (

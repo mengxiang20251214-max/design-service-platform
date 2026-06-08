@@ -8,8 +8,19 @@
     "start": "next start",
     "lint": "eslint",
     "db:push": "prisma db push",
-    "db:seed": "tsx scripts/seed-db.ts",
-    "db:studio": "prisma studio"
+    "db:seed": "node scripts/seed-db.js",
+    "db:studio": "prisma studio",
+    "db:migrate:prod": "node scripts/migrate-prod.js",
+    "db:backup:dev": "node scripts/backup-db.js dev",
+    "db:backup:prod": "node scripts/backup-db.js prod",
+    "db:validate": "node -e \"require('@prisma/client').PrismaClient()\"",
+    "build:prod": "npm run build && npm run db:migrate:prod",
+    "start:prod": "NODE_ENV=production next start",
+    "deploy": "npm run build && npm run db:migrate:prod && npm run start:prod",
+    "test": "echo \"Test suite not configured yet\"",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "diagnose": "npm run type-check && npm run lint"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
