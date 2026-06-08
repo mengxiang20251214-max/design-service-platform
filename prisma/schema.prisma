@@ -62,3 +62,38 @@ model Style {
 
   @@index([categoryId])
 }
+
+model Order {
+  id                String     @id @default(cuid())
+  orderNumber       String     @unique
+  customerName      String
+  customerEmail     String
+  productName       String
+  styleName         String
+  packageType       String
+  requirements      String
+  designSize        String
+  fileFormat        String
+  uploadedFileCount Int
+  totalPrice        Float
+  status            String     @default("pending") // pending, paid, completed, cancelled
+  notes             String?
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+  payment           Payment?
+}
+
+model Payment {
+  id              String     @id @default(cuid())
+  order           Order      @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId         String     @unique
+  stripePaymentId String?
+  stripeClientSecret String?
+  amount          Float
+  currency        String     @default("usd")
+  status          String     @default("pending") // pending, succeeded, failed, cancelled
+  paymentMethod   String?    // card, alipay, wechat
+  errorMessage    String?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+}

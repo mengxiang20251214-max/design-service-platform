@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useCheckoutStore } from '@/lib/checkout-store';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
@@ -22,6 +23,7 @@ const STEPS = [
 ];
 
 export default function CheckoutPage() {
+  const router = useRouter();
   const {
     currentStep,
     nextStep,
@@ -34,7 +36,6 @@ export default function CheckoutPage() {
     customerEmail,
     customerName,
     getTotalPrice,
-    reset,
   } = useCheckoutStore();
 
   // Validation logic
@@ -57,11 +58,7 @@ export default function CheckoutPage() {
 
   const handleConfirmOrder = async () => {
     if (!canProceedToNext()) return;
-
-    // Here you would normally send the order to the backend
-    alert('订单已提交！感谢你的订单。');
-    reset();
-    window.location.href = '/';
+    router.push('/checkout/payment');
   };
 
   return (

@@ -62,7 +62,10 @@ export interface CheckoutState {
     packageType: string;
     styleName: string;
     requirements: string;
+    designSize: string;
+    fileFormat: string;
     fileCount: number;
+    uploadedFileCount: number;
     totalPrice: number;
   };
   reset: () => void;
@@ -153,7 +156,10 @@ export const useCheckoutStore = create<CheckoutState>((set, get) => ({
       packageType: state.selectedPackage,
       styleName: state.selectedStyleName || 'N/A',
       requirements: state.requirements,
+      designSize: state.designSize,
+      fileFormat: state.fileFormat,
       fileCount: state.uploadedFiles.length,
+      uploadedFileCount: state.uploadedFiles.length,
       totalPrice: state.productPrice + state.stylePrice,
     };
   },
