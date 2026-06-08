@@ -1,0 +1,240 @@
+
+> design-service-platform@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.7 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://172.19.0.1:3000
+- Environments: .env
+✓ Ready in 507ms
+- Experiments (use with caution):
+  · optimizePackageImports
+
+ GET /login 200 in 385ms (next.js: 162ms, application-code: 223ms)
+ GET /api/auth/verify 200 in 205ms (next.js: 104ms, application-code: 101ms)
+ GET /dashboard 200 in 62ms (next.js: 27ms, application-code: 35ms)
+ GET /admin 200 in 58ms (next.js: 26ms, application-code: 33ms)
+ GET /designer 200 in 67ms (next.js: 29ms, application-code: 38ms)
+ GET /dashboard 200 in 29ms (next.js: 3ms, application-code: 27ms)
+ GET /admin 200 in 25ms (next.js: 2ms, application-code: 23ms)
+ GET /designer 200 in 23ms (next.js: 2ms, application-code: 21ms)
+ HEAD /dashboard 200 in 23ms (next.js: 3ms, application-code: 20ms)
+ GET /dashboard 200 in 38ms (next.js: 4ms, application-code: 34ms)
+ GET /api/auth/verify 200 in 11ms (next.js: 4ms, application-code: 7ms)
+ GET /api/users/orders 200 in 54ms (next.js: 35ms, application-code: 19ms)
+ GET /api/users/orders 200 in 24ms (next.js: 19ms, application-code: 6ms)
+ GET /admin 200 in 27ms (next.js: 2ms, application-code: 25ms)
+ GET /api/admin/stats 200 in 181ms (next.js: 172ms, application-code: 9ms)
+ GET /api/admin/stats 200 in 8ms (next.js: 2ms, application-code: 6ms)
+ GET /admin 200 in 28ms (next.js: 3ms, application-code: 26ms)
+ GET /api/auth/verify 200 in 9ms (next.js: 3ms, application-code: 7ms)
+ GET /api/admin/stats 200 in 9ms (next.js: 1842µs, application-code: 7ms)
+ GET /api/admin/stats 200 in 8ms (next.js: 1868µs, application-code: 6ms)
+ GET /designer 200 in 42ms (next.js: 4ms, application-code: 38ms)
+ GET /api/auth/verify 200 in 13ms (next.js: 3ms, application-code: 9ms)
+ GET /admin 200 in 18ms (next.js: 2ms, application-code: 16ms)
+ GET /api/admin/stats 200 in 8ms (next.js: 3ms, application-code: 5ms)
+ GET /api/admin/stats 200 in 8ms (next.js: 2ms, application-code: 6ms)
+ GET /admin 200 in 18ms (next.js: 4ms, application-code: 14ms)
+ GET /admin/users 200 in 437ms (next.js: 418ms, application-code: 19ms)
+ GET /api/admin/users?page=1 200 in 118ms (next.js: 111ms, application-code: 7ms)
+ GET /api/admin/users?page=1 200 in 6ms (next.js: 1527µs, application-code: 4ms)
+ GET /login 200 in 55ms (next.js: 6ms, application-code: 49ms)
+ GET /api/auth/verify 401 in 6ms (next.js: 2ms, application-code: 4ms)
+ GET /admin/users 200 in 22ms (next.js: 5ms, application-code: 18ms)
+ GET /api/admin/users?page=1 200 in 10ms (next.js: 3ms, application-code: 7ms)
+ GET /api/admin/users?page=1 200 in 6ms (next.js: 1743µs, application-code: 4ms)
+ GET /admin/settings 200 in 360ms (next.js: 344ms, application-code: 17ms)
+[browser] In HTML, <div> cannot be a descendant of <p>.
+This will cause a hydration error.
+
+  ...
+    <RedirectErrorBoundary router={{...}}>
+      <InnerLayoutRouter url="/admin/set..." tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} ...>
+        <SegmentViewNode type="page" pagePath="admin/sett...">
+          <SegmentTrieNode>
+          <ClientPageRoot Component={function SettingsPage} serverProvidedParams={{...}}>
+            <SettingsPage params={Promise} searchParams={Promise}>
+              <div className="space-y-6">
+                <motion.div>
+                <motion.div>
+                <motion.div>
+                <motion.div>
+                <motion.div>
+                <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.5, ...}}>
+                  <div style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                    <_c className="bg-blue-50...">
+                      <div ref={null} className="rounded-lg...">
+                        <_c2>
+                        <_c8>
+                          <div ref={null} className="p-6 pt-0">
+>                           <p className="text-sm text-blue-800 dark:text-blue-200 mb-4">
+                              <Badge className="inline-blo...">
+>                               <div
+>                                 className="items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tran..."
+>                               >
+                            ...
+        ...
+      ...
+ 
+    at validateDOMNesting (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:1963:372)
+    at completeWork (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:6925:25)
+    at runWithFiberInDEV (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:965:74)
+    at completeUnitOfWork (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9622:23)
+    at performUnitOfWork (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9551:58)
+    at renderRootConcurrent (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9534:71)
+    at performWorkOnRoot (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_1amofcm._.js:2647:64) (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:1963:372)
+[browser] <p> cannot contain a nested <div>.
+See this log for the ancestor stack trace. 
+    at <unknown> (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:1965:21)
+    at runWithFiberInDEV (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:965:74)
+    at validateDOMNesting (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:1964:178)
+    at completeWork (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:6925:25)
+    at runWithFiberInDEV (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:965:74)
+    at completeUnitOfWork (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9622:23)
+    at performUnitOfWork (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9551:58)
+    at renderRootConcurrent (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9534:71)
+    at performWorkOnRoot (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_1amofcm._.js:2647:64) (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:1965:21)
+ GET /admin 200 in 17ms (next.js: 2ms, application-code: 14ms)
+ GET /api/admin/stats 200 in 10ms (next.js: 3ms, application-code: 7ms)
+ GET /api/admin/stats 200 in 7ms (next.js: 1624µs, application-code: 5ms)
+ GET /admin/orders 200 in 342ms (next.js: 327ms, application-code: 15ms)
+ GET /api/admin/orders?status=all&page=1 200 in 110ms (next.js: 101ms, application-code: 9ms)
+ GET /api/admin/orders?status=all&page=1 200 in 36ms (next.js: 29ms, application-code: 7ms)
+ GET /admin/users 200 in 40ms (next.js: 5ms, application-code: 34ms)
+ GET /api/admin/users?page=1 200 in 7ms (next.js: 2ms, application-code: 5ms)
+ GET /api/admin/users?page=1 200 in 7ms (next.js: 2ms, application-code: 5ms)
+ GET /admin/settings 200 in 19ms (next.js: 4ms, application-code: 15ms)
+[browser] In HTML, <div> cannot be a descendant of <p>.
+This will cause a hydration error.
+
+  ...
+    <RedirectErrorBoundary router={{...}}>
+      <InnerLayoutRouter url="/admin/set..." tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} ...>
+        <SegmentViewNode type="page" pagePath="admin/sett...">
+          <SegmentTrieNode>
+          <ClientPageRoot Component={function SettingsPage} serverProvidedParams={{...}}>
+            <SettingsPage params={Promise} searchParams={Promise}>
+              <div className="space-y-6">
+                <motion.div>
+                <motion.div>
+                <motion.div>
+                <motion.div>
+                <motion.div>
+                <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.5, ...}}>
+                  <div style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                    <_c className="bg-blue-50...">
+                      <div ref={null} className="rounded-lg...">
+                        <_c2>
+                        <_c8>
+                          <div ref={null} className="p-6 pt-0">
+>                           <p className="text-sm text-blue-800 dark:text-blue-200 mb-4">
+                              <Badge className="inline-blo...">
+>                               <div
+>                                 className="items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tran..."
+>                               >
+                            ...
+        ...
+      ...
+ 
+    at validateDOMNesting (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:1963:372)
+    at completeWork (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:6925:25)
+    at runWithFiberInDEV (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:965:74)
+    at completeUnitOfWork (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9622:23)
+    at performUnitOfWork (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9551:58)
+    at renderRootConcurrent (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9534:71)
+    at performWorkOnRoot (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_1amofcm._.js:2647:64) (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:1963:372)
+[browser] <p> cannot contain a nested <div>.
+See this log for the ancestor stack trace. 
+    at <unknown> (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:1965:21)
+    at runWithFiberInDEV (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:965:74)
+    at validateDOMNesting (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:1964:178)
+    at completeWork (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:6925:25)
+    at runWithFiberInDEV (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:965:74)
+    at completeUnitOfWork (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9622:23)
+    at performUnitOfWork (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9551:58)
+    at renderRootConcurrent (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9534:71)
+    at performWorkOnRoot (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_1amofcm._.js:2647:64) (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:1965:21)
+ GET /admin/settings 200 in 33ms (next.js: 3ms, application-code: 29ms)
+ GET /api/auth/verify 200 in 11ms (next.js: 4ms, application-code: 7ms)
+[browser] In HTML, <div> cannot be a descendant of <p>.
+This will cause a hydration error.
+
+  ...
+    <RedirectErrorBoundary router={{...}}>
+      <InnerLayoutRouter url="/admin/set..." tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+        <SegmentViewNode type="page" pagePath="admin/sett...">
+          <SegmentTrieNode>
+          <ClientPageRoot Component={function SettingsPage} serverProvidedParams={{...}}>
+            <SettingsPage params={Promise} searchParams={Promise}>
+              <div className="space-y-6">
+                <motion.div>
+                <motion.div>
+                <motion.div>
+                <motion.div>
+                <motion.div>
+                <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.5, ...}}>
+                  <div style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                    <_c className="bg-blue-50...">
+                      <div ref={null} className="rounded-lg...">
+                        <_c2>
+                        <_c8>
+                          <div ref={null} className="p-6 pt-0">
+>                           <p className="text-sm text-blue-800 dark:text-blue-200 mb-4">
+                              <Badge className="inline-blo...">
+>                               <div
+>                                 className="items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tran..."
+>                               >
+                            ...
+        ...
+      ...
+ 
+    at validateDOMNesting (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:1963:372)
+    at completeWork (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:6925:25)
+    at runWithFiberInDEV (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:965:74)
+    at completeUnitOfWork (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9622:23)
+    at performUnitOfWork (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9557:28)
+    at workLoopSync (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9449:40)
+    at renderRootSync (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9433:13)
+    at performWorkOnRoot (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9061:186)
+    at performWorkOnRootViaSchedulerTask (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_1amofcm._.js:2647:64) (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:1963:372)
+[browser] <p> cannot contain a nested <div>.
+See this log for the ancestor stack trace. 
+    at <unknown> (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:1965:21)
+    at runWithFiberInDEV (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:965:74)
+    at validateDOMNesting (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:1964:178)
+    at completeWork (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:6925:25)
+    at runWithFiberInDEV (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:965:74)
+    at completeUnitOfWork (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9622:23)
+    at performUnitOfWork (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9557:28)
+    at workLoopSync (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9449:40)
+    at renderRootSync (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9433:13)
+    at performWorkOnRoot (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:9061:186)
+    at performWorkOnRootViaSchedulerTask (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_1amofcm._.js:2647:64) (file://C:/设计服务平台/design-service-platform/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js:1965:21)
+✓ Compiled in 1621ms
+ GET /admin 200 in 203ms (next.js: 46ms, application-code: 157ms)
+ GET /login 200 in 205ms (next.js: 94ms, application-code: 111ms)
+ GET /admin/settings 200 in 206ms (next.js: 168ms, application-code: 38ms)
+ GET /admin 200 in 117ms (next.js: 3ms, application-code: 114ms)
+ GET /api/auth/verify 200 in 49ms (next.js: 40ms, application-code: 8ms)
+ GET /api/admin/stats 200 in 36ms (next.js: 29ms, application-code: 7ms)
+ GET /api/admin/stats 200 in 9ms (next.js: 1956µs, application-code: 7ms)
+ GET /admin/settings 200 in 42ms (next.js: 4ms, application-code: 38ms)
+ GET /api/auth/verify 200 in 8ms (next.js: 3ms, application-code: 6ms)
+ GET /admin 200 in 19ms (next.js: 3ms, application-code: 16ms)
+ GET /api/admin/stats 200 in 11ms (next.js: 4ms, application-code: 7ms)
+ GET /api/admin/stats 200 in 9ms (next.js: 1600µs, application-code: 7ms)

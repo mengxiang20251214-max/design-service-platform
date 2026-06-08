@@ -190,9 +190,10 @@ export default function SettingsPage() {
             <CardTitle className="text-blue-900 dark:text-blue-100">🎯 测试信息</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-blue-800 dark:text-blue-200 mb-4">
-              现在您以管理员身份访问此页面。 当前账户角色为 <Badge className="inline-block ml-2">管理员</Badge>
-            </p>
+            <div className="text-sm text-blue-800 dark:text-blue-200 mb-4 flex items-center gap-2">
+              <span>现在您以管理员身份访问此页面。 当前账户角色为</span>
+              <Badge>管理员</Badge>
+            </div>
             <p className="text-sm text-blue-800 dark:text-blue-200">
               所有平台功能已在此后台可用。包括用户管理、订单管理和系统设置。
             </p>
