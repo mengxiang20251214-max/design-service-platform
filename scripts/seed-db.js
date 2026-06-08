@@ -1,15 +1,20 @@
-import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcryptjs';
+const { PrismaClient } = require('@prisma/client');
+const { PrismaBetterSqlite3 } = require('@prisma/adapter-better-sqlite3');
+const bcrypt = require('bcryptjs');
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  adapter: new PrismaBetterSqlite3({
+    url: process.env.DATABASE_URL || 'file:./prisma/dev.db',
+  }),
+});
 
 async function main() {
   console.log('🌱 开始导入测试数据...');
 
   // 清空现有数据
   await prisma.payment.deleteMany();
-  await prisma.order.deleteMany();
   await prisma.designerOrder.deleteMany();
+  await prisma.order.deleteMany();
   await prisma.earning.deleteMany();
   await prisma.designerApplication.deleteMany();
   await prisma.designer.deleteMany();
@@ -102,7 +107,7 @@ async function main() {
     data: {
       email: 'admin@designplatform.com',
       name: '管理员',
-      password: await bcrypt.hash('admin123', 10),
+      password: bcrypt.hashSync('admin123', 10),
       role: 'admin',
       status: 'active',
     },
@@ -113,7 +118,7 @@ async function main() {
     data: {
       email: 'user1@example.com',
       name: '张三',
-      password: await bcrypt.hash('password123', 10),
+      password: bcrypt.hashSync('password123', 10),
       role: 'user',
       status: 'active',
     },
@@ -123,7 +128,7 @@ async function main() {
     data: {
       email: 'user2@example.com',
       name: '李四',
-      password: await bcrypt.hash('password123', 10),
+      password: bcrypt.hashSync('password123', 10),
       role: 'user',
       status: 'active',
     },
@@ -134,7 +139,7 @@ async function main() {
     data: {
       email: 'designer@example.com',
       name: '设计师小王',
-      password: await bcrypt.hash('password123', 10),
+      password: bcrypt.hashSync('password123', 10),
       role: 'designer',
       status: 'active',
     },

@@ -19,22 +19,26 @@ interface Message {
   createdAt: string;
 }
 
-interface Order {
+interface DesignerOrder {
   id: string;
-  orderNumber: string;
-  productName: string;
-  status: string;
+  orderId: string;
+  order: {
+    id: string;
+    orderNumber: string;
+    productName: string;
+    status: string;
+    userId: string;
+  };
 }
 
-export default function MessagesPage() {
-  const [orders, setOrders] = useState<Order[]>([]);
-  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+export default function DesignerMessagesPage() {
+  const [orders, setOrders] = useState<DesignerOrder[]>([]);
+  const [selectedOrder, setSelectedOrder] = useState<DesignerOrder | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
   const [messageText, setMessageText] = useState("");
   const [sending, setSending] = useState(false);
   const [currentUser, setCurrentUser] = useState<any>(null);
-  const [contactUsers, setContactUsers] = useState<Map<string, string>>(new Map());
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -62,38 +66,19 @@ export default function MessagesPage() {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const response = await fetch("/api/users/orders");
+      const response = await fetch("/api/designer/orders");
       if (response.ok) {
         const data = await response.json();
-        const orderList = data.orders || [];
+        const orderList = Array.isArray(data.orders) ? data.orders : [];
         setOrders(orderList);
         if (orderList.length > 0) {
           setSelectedOrder(orderList[0]);
-          fetchContactUser(orderList[0].id);
         }
       }
     } catch (error) {
       console.error("Failed to fetch orders:", error);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const fetchContactUser = async (orderId: string) => {
-    try {
-      const response = await fetch(`/api/users/orders/${orderId}`);
-      if (response.ok) {
-        const data = await response.json();
-        const designerId =
-          data.order?.designerOrder?.designer?.userId ||
-          data.order?.userId ||
-          "";
-        if (designerId) {
-          setContactUsers((prev) => new Map(prev).set(orderId, designerId));
-        }
-      }
-    } catch (error) {
-      console.error("Failed to fetch contact user:", error);
     }
   };
 
@@ -108,7 +93,7 @@ export default function MessagesPage() {
   const fetchMessages = async () => {
     if (!selectedOrder) return;
     try {
-      const response = await fetch(`/api/messages/${selectedOrder.id}`);
+      const response = await fetch(`/api/messages/${selectedOrder.orderId}`);
       if (response.ok) {
         const data = await response.json();
         setMessages(data.messages || []);
@@ -125,20 +110,14 @@ export default function MessagesPage() {
   const handleSendMessage = async () => {
     if (!messageText.trim() || !selectedOrder || !currentUser) return;
 
-    const toUserId = contactUsers.get(selectedOrder.id);
-    if (!toUserId) {
-      alert("无法确定接收人");
-      return;
-    }
-
     setSending(true);
     try {
       const response = await fetch("/api/messages", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          orderId: selectedOrder.id,
-          toUserId,
+          orderId: selectedOrder.orderId,
+          toUserId: selectedOrder.order.userId,
           message: messageText,
         }),
       });
@@ -181,21 +160,22 @@ export default function MessagesPage() {
             {orders.length === 0 ? (
               <p className="text-sm text-muted-foreground">暂无订单</p>
             ) : (
-              orders.map((order) => (
+              orders.map((designerOrder) => (
                 <button
-                  key={order.id}
-                  onClick={() => {
-                    setSelectedOrder(order);
-                    fetchContactUser(order.id);
-                  }}
+                  key={designerOrder.id}
+                  onClick={() => setSelectedOrder(designerOrder)}
                   className={`w-full text-left p-3 rounded-lg transition-colors ${
-                    selectedOrder?.id === order.id
+                    selectedOrder?.id === designerOrder.id
                       ? "bg-primary text-primary-foreground"
                       : "bg-muted hover:bg-muted/80"
                   }`}
                 >
-                  <div className="font-medium text-sm">{order.orderNumber}</div>
-                  <div className="text-xs opacity-80">{order.productName}</div>
+                  <div className="font-medium text-sm">
+                    {designerOrder.order.orderNumber}
+                  </div>
+                  <div className="text-xs opacity-80">
+                    {designerOrder.order.productName}
+                  </div>
                 </button>
               ))
             )}
@@ -213,17 +193,18 @@ export default function MessagesPage() {
           <Card className="flex flex-col h-[600px]">
             <CardHeader className="border-b">
               <CardTitle className="text-lg">
-                {selectedOrder.orderNumber} - {selectedOrder.productName}
+                {selectedOrder.order.orderNumber} -{" "}
+                {selectedOrder.order.productName}
               </CardTitle>
               <Badge variant="outline" className="w-fit mt-2">
-                {selectedOrder.status}
+                {selectedOrder.order.status}
               </Badge>
             </CardHeader>
 
             <CardContent className="flex-1 overflow-y-auto p-4 space-y-4">
               {messages.length === 0 ? (
                 <div className="flex items-center justify-center h-full text-muted-foreground">
-                  <p>暂无消息，开始对话吧</p>
+                  <p>暂无消息</p>
                 </div>
               ) : (
                 messages.map((msg, index) => (
@@ -291,7 +272,7 @@ export default function MessagesPage() {
           <Card className="flex items-center justify-center h-[600px]">
             <div className="text-center text-muted-foreground">
               <MessageCircle className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              <p>请选择一个订单开始对话</p>
+              <p>暂无可用订单</p>
             </div>
           </Card>
         )}

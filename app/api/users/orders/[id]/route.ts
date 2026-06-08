@@ -8,7 +8,7 @@ export async function GET(
 ) {
   const { id } = await params;
   try {
-    const token = request.cookies.get('token')?.value;
+    const token = request.cookies.get('auth_token')?.value;
 
     if (!token) {
       return NextResponse.json(
@@ -60,7 +60,7 @@ export async function POST(
 ) {
   const { id } = await params;
   try {
-    const token = request.cookies.get('token')?.value;
+    const token = request.cookies.get('auth_token')?.value;
 
     if (!token) {
       return NextResponse.json(

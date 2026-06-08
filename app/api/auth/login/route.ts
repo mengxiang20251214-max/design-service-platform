@@ -5,7 +5,6 @@ export async function POST(request: NextRequest) {
   try {
     const { email, password } = await request.json();
 
-    // 基础验证
     if (!email || !password) {
       return NextResponse.json(
         { success: false, message: 'Missing email or password' },
@@ -19,9 +18,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(result, { status: 401 });
     }
 
-    // 设置 token 到 cookie
     const response = NextResponse.json(
-      { success: true, message: result.message, user: result.user },
+      {
+        success: true,
+        message: result.message,
+        user: result.user,
+        redirectUrl: result.user?.role === 'admin' ? '/admin' : result.user?.role === 'designer' ? '/designer' : '/dashboard',
+      },
       { status: 200 }
     );
 
@@ -29,7 +32,7 @@ export async function POST(request: NextRequest) {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      maxAge: 60 * 60 * 24 * 7, // 7 days
+      maxAge: 60 * 60 * 24 * 7,
     });
 
     return response;

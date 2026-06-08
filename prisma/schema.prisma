@@ -12,10 +12,14 @@ model User {
   name         String
   password     String
   role         String        @default("user") // user, designer, admin
+  status       String        @default("active") // active, banned
   createdAt    DateTime      @default(now())
   updatedAt    DateTime       @updatedAt
   orders       Order[]
   designer     Designer?
+  designerApplication DesignerApplication?
+  messagesFrom Message[]     @relation("MessageFrom")
+  messagesTo   Message[]     @relation("MessageTo")
 }
 
 model Designer {
@@ -137,6 +141,7 @@ model Order {
   updatedAt         DateTime         @updatedAt
   payment           Payment?
   designerOrder     DesignerOrder?
+  messages          Message[]
 
   @@index([userId])
 }
@@ -154,4 +159,37 @@ model Payment {
   errorMessage    String?
   createdAt       DateTime   @default(now())
   updatedAt       DateTime   @updatedAt
+}
+
+model DesignerApplication {
+  id         String     @id @default(cuid())
+  userId     String     @unique
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bio        String?
+  skills     String?    // JSON: ["UI/UX", "Web Design"]
+  portfolioUrl String?
+  status     String     @default("pending") // pending, approved, rejected
+  rejectionReason String?
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+model Message {
+  id           String     @id @default(cuid())
+  orderId      String
+  order        Order      @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  fromUserId   String
+  fromUser     User       @relation("MessageFrom", fields: [fromUserId], references: [id], onDelete: Cascade)
+  toUserId     String
+  toUser       User       @relation("MessageTo", fields: [toUserId], references: [id], onDelete: Cascade)
+  message      String
+  attachments  String?    // JSON: [{ url, name, type }]
+  isRead       Boolean    @default(false)
+  readAt       DateTime?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@index([orderId])
+  @@index([fromUserId])
+  @@index([toUserId])
 }
