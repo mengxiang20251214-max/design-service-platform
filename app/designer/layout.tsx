@@ -33,6 +33,12 @@ export default function DesignerLayout({
       return;
     }
 
+    // 管理员不应该访问 designer，应该跳转到 /admin
+    if (!loading && user && user.role === 'admin') {
+      router.push('/admin');
+      return;
+    }
+
     if (!loading && user) {
       checkDesignerStatus();
     }

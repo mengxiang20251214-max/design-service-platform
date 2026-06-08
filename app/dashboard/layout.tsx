@@ -29,8 +29,15 @@ export default function DashboardLayout({
   useEffect(() => {
     if (!loading && !isAuthenticated) {
       router.push('/login');
+      return;
     }
-  }, [loading, isAuthenticated, router]);
+
+    // 管理员不应该访问 dashboard，应该跳转到 /admin
+    if (!loading && user && user.role === 'admin') {
+      router.push('/admin');
+      return;
+    }
+  }, [loading, isAuthenticated, user, router]);
 
   if (loading) {
     return (
