@@ -13,6 +13,7 @@ model User {
   password  String
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
+  orders    Order[]
 }
 
 model Category {
@@ -66,6 +67,8 @@ model Style {
 model Order {
   id                String     @id @default(cuid())
   orderNumber       String     @unique
+  userId            String?
+  user              User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
   customerName      String
   customerEmail     String
   productName       String
@@ -81,6 +84,8 @@ model Order {
   createdAt         DateTime   @default(now())
   updatedAt         DateTime   @updatedAt
   payment           Payment?
+
+  @@index([userId])
 }
 
 model Payment {
