@@ -71,23 +71,7 @@ const nextConfig: NextConfig = {
 
   // 重定向配置
   redirects: async () => {
-    return [
-      {
-        source: "/admin",
-        destination: "/admin/",
-        permanent: false,
-      },
-      {
-        source: "/dashboard",
-        destination: "/dashboard/",
-        permanent: false,
-      },
-      {
-        source: "/designer",
-        destination: "/designer/",
-        permanent: false,
-      },
-    ];
+    return [];
   },
 };
 
